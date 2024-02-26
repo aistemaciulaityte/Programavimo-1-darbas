@@ -70,18 +70,19 @@ def sakyk_labas():
 def skaiciuoti():
 
     pirmas = request.args.get("arg1") 
-    antras = request.args.get("arg2")
-    sum = sudetis (int(pirmas), int(antras)) 
-    return f"{sum}"
+    antras = request.args.get("arg2") 
 
+    sudetis = sudetis(pirmas, antras)
+    atimtis = atimtis(pirmas, antras)
+    daugyba = daugyba(pirmas, antras)
+    dalyba = dalyba(pirmas, antras)
 
-
-
-
-
-   
-
-
+    return f"""
+    <p>Sudetis: {sudetis}</p>
+    <p>Atimtis: {atimtis}</p>
+    <p>Daugyba: {daugyba}</p>
+    <p>Dalyba: {dalyba}</p>
+    """
 
 
 
