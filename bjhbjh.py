@@ -3,17 +3,18 @@
         pip install Flask
 ''' 
 
-# 2. Importuojame
 
 from flask import Flask, request
 app = Flask(__name__)
 
 
-
-skaicius = 0 # apsirasome kintamaji ( Globalus )
+skaicius = 0 
 
 def sudetis(pirmas,antras):
         return pirmas + antras
+
+def atimtis(pirmas,antras):
+        return pirmas - antras
 
 def daugyba(pirmas,antras):
         return pirmas * antras
@@ -21,13 +22,12 @@ def daugyba(pirmas,antras):
 def dalyba(pirmas,antras):
         return pirmas / antras
 
-def atimtis(pirmas,antras):
-        return pirmas - antras
 
 
 
 
-@app.route("/") # Route 1
+
+@app.route("/") 
 def hello_world():
 
     return f"""
@@ -48,7 +48,10 @@ def hello_world():
                 </form> 
             """
 
-@app.route("/labas")  # Route 2
+
+
+
+@app.route("/labas")  
 def sakyk_labas():
     global skaicius ## Naudoju globalu kintamaji
     skaicius = skaicius +1 ## kaskart atidare pridedam 1
@@ -60,16 +63,23 @@ def sakyk_labas():
         /skaicius?test=0  &  test2=0
     '''
 
-@app.route("/skaicius") # Route 3
-def skaiciavimo():
-    #UZKLAUSA. ARGUMENTAI. METODAS()
-    skaicius = request.args.get("test") ### Pasiimam argumenta is URL pvz.: /skaicius?test=100
-    skaicius2 = request.args.get("test2") ### Pasiimam argumenta 2 is URL pvz.: /skaicius?test2=100
 
-    suma = sudetis(int(skaicius2),int(skaicius))
 
-    return f"Tavo ivestas skaicius: {suma}"
 
+@app.route("/skaicius") 
+def skaiciuoti():
+
+    pirmas = request.args.get("arg1") 
+    antras = request.args.get("arg2")
+    sum = sudetis (int(pirmas), int(antras)) 
+    return f"{sum}"
+
+
+
+
+
+
+   
 
 
 
